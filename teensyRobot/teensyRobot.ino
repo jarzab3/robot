@@ -44,44 +44,110 @@ void loop() {
   
   delay(10);
 
-  while (abs(wheel_1QeiCounts) <= 200){
+  while (abs(wheel_1QeiCounts) <= 250){
     delay(1);
     drive(0, 200);
-    Serial.println(wheel_1QeiCounts);
-    Serial.println(wheel_2QeiCounts);
   }
+  
   stopRobot();
-  delay(2000);
+  delay(20);
 
-    while (abs(wheel_1QeiCounts) <= 260){
+  while (abs(wheel_1QeiCounts) <= 330){
     delay(1);
     slightTurn(0, 200, 50);
-    Serial.println(wheel_1QeiCounts);
-    Serial.println(wheel_2QeiCounts);
   }
   
+  while (abs(wheel_1QeiCounts) <= 550){
+    delay(1);
+    drive(0, 200);
+  }
+
   stopRobot();
   delay(2000);
-
+//  Marker up
+  
+   while (abs(wheel_1QeiCounts) >= 400){
+    delay(1);
+    drive(1, 200);
+  }
+  
   while (abs(wheel_1QeiCounts) <= 460){
     delay(1);
-//    slightTurn(0, 100, 50);
-    drive(0, 200);
-    Serial.println(wheel_1QeiCounts);
-    Serial.println(wheel_2QeiCounts);
+    slightTurn(0, 200, 0);
   }
   
   stopRobot();
   delay(2000);
+  //  Marker down
+  
+  while (abs(wheel_1QeiCounts) <= 700){
+    delay(1);
+    drive(0, 200);
+  }
+
+  stopRobot();
+  delay(2000);
+//marker up
+
+  while (abs(wheel_1QeiCounts) <= 830){
+    delay(1);
+    slightTurn(0, 200, 0);
+  }
+
+  while (abs(wheel_1QeiCounts) <= 1330){
+    delay(1);
+    drive(0, 200);
+  }
+
+  stopRobot();
+  delay(2000);
+//marker down
+  
+  while (abs(wheel_1QeiCounts) <= 1400){
+    delay(1);
+    drive(0, 200);
+  }
+
+  while (abs(wheel_1QeiCounts) <= 1550){
+    delay(1);
+    slightTurn(0, 200, 100);
+  }
+
+//   while (abs(wheel_1QeiCounts) <= 1800){
+//    delay(1);
+//    drive(0, 200);
+//  }
+//
+//  while (abs(wheel_1QeiCounts) <= 2200){
+//    delay(1);
+//    slightTurn(0, 200, 0);
+//  }
+
+
+
+
+  
+  
+ stopRobot();
+ 
+  while(1){}
 
 
 }
 
 void drive(int robotDirection, int robotSpeed){
+
+  int corRobotSpeed;
+
+  if (robotDirection == 0) {
+     corRobotSpeed = robotSpeed + 13;
+    } else  {   
+      corRobotSpeed = robotSpeed - 13;
+    }
   
   motor1Wheel.setDirectionMode(robotDirection);
   motor2Wheel.setDirectionMode(not(robotDirection));
-  motor1Wheel.setMotorPower(robotSpeed);
+  motor1Wheel.setMotorPower(corRobotSpeed);
   motor2Wheel.setMotorPower(robotSpeed);
 
 }
@@ -147,10 +213,3 @@ void stopRobot(){
     }
     wheel_2QeiCounts--;
   }
-
-
-
-
-
-
-
